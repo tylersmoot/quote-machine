@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build A Quote</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <style>
+        .header,
+        .crumbs {
+            display: flex;
+            justify-content: center;
+        }
+
+
+
+        .hideForm {
+            display: none;
+        }
+
+        .displayForm {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="/">QuoteMachine</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/allContacts">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+        <!-- header section -->
+
+
+        <div class="header">
+            <h3>1. Add Contact</h3>
+        </div>
+
+
+
+
+        <!-- breadcrumbs section -->
+
+        <div class="crumbs">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Contact</li>
+                </ol>
+            </nav>
+        </div>
+
+
+
+
+        <!-- add contact section -->
+
+
+
+        <h3>Add Existing Contact</h3>
+        <form action="/addContactSuccess" method="get">
+
+            <select>
+                <option value="Add contact">Add Existing Contact</option>
+                {{#each all}}
+                <option name="contactDropdown">{{this.firstName}} {{this.lastName}} - {{this.email}} {{this._id}}
+                </option>
+                {{/each}}
+            </select>
+            <button type='submit' id="updateBtn">Update</button>
+
+        </form>
+
+        <h3>Create New Contact</h3>
+        <div><button id="click">V</button></span></div>
+
+
+
+        <section id="newContactForm" class="hideForm">
+
+            <form action="/addContact" method="post">
+
+                <div class="mb-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <label for="exampleFormControlInput2" class="form-label">First Name</label>
+                                <input name="firstName" type="text" class="form-control" id="exampleFormControlInput2"
+                                    placeholder="John" required>
+                            </div>
+                            <div class="col">
+                                <label for="exampleFormControlInput2" class="form-label">Last Name</label>
+                                <input name="lastName" type="text" class="form-control" id="exampleFormControlInput2"
+                                    placeholder="Smith" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="exampleFormControlInput2" class="form-label">Phone Numbeer</label>
+                                <input name="phoneNumber" type="text" class="form-control" id="exampleFormControlInput2"
+                                    placeholder="495-343-9484" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <input name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="name@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="exampleFormControlInput2" class="form-label">Street</label>
+                                <input name="street" type="text" class="form-control" id="exampleFormControlInput2"
+                                    placeholder="23 Street Way" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="exampleFormControlInput2" class="form-label">City</label>
+                                <input name="city" type="text" class="form-control" id="exampleFormControlInput2"
+                                    placeholder="Jackson" required>
+                            </div>
+                            <div class="col">
+                                <label for="exampleFormControlInput2" class="form-label">State</label>
+                                <input name="state" type="text" class="form-control" id="exampleFormControlInput2"
+                                    placeholder="Mississippi" required>
+                            </div>
+                            <div class="col">
+                                <label for="exampleFormControlInput2" class="form-label">Zip Code</label>
+                                <input name="zipCode" type="text" class="form-control" id="exampleFormControlInput2"
+                                    placeholder="12345" required>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col mt-4">
+                                <button type="submit" id="createContactBtn" class="btn btn-success">Add
+                                    Contact
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </form>
+        </section> <!-- end of contact form section !-->
+
+
+        <button id="next" class="btn btn-primary" disabled="true" style="color: white;">Next</button>
+
+    </div> <!-- end of container !-->
+
+
+
+    <script>
+
+        let btn = document.querySelector("#click");
+        let updateBtn = document.querySelector("#updateBtn");
+
+        btn.addEventListener("click", function () {
+            let form = document.querySelector("#newContactForm");
+            form.classList.toggle("displayForm");
+        });
+
+        updateBtn.addEventListener("click", function () {
+            let select = document.querySelector("select");
+            let next = document.querySelector("#next");
+
+            if (select.value != 'Add contact') {
+                next.disabled = false;
+
+
+            }
+            else {
+                next.disabled = true;
+            }
+        });
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+
+
+
+</body>
+
+</html>

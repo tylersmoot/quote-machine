@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Form</title>
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+
+    <style>
+        .header,
+        .crumbs {
+            display: flex;
+            justify-content: center;
+        }
+
+        #estimateSheetBtns a {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        table tr td {
+            padding: 10px 10px 10px 10px;
+        }
+
+        thead td {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="/">QuoteMachine</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/allContacts">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="header">
+        <h3>2. Add Measurements</h3>
+    </div>
+
+
+    <div class="crumbs">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/addContact">Add Contact</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Measurement</li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <div class="container">
+
+
+
+
+
+        <section id="quoteForm">
+            <form action='/addMeasurements' enctype="application/x-www-form-urlencodeds" method="post" id="form">
+                <div class="mb-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Width (in.)</label>
+                                <input type="number" class="form-control" placeholder="34" name="width" value="width">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Height (in.)</label>
+                                <input type="number" name="height" class="form-control" placeholder="56">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Window Strength</label>
+                                <select name="windowType" class="form-select form-select-lg mb-3">
+                                    <option selected></option>
+                                    <option value="Annealaed">Annealed</option>
+                                    <option value="Heat Strenghthened">Heat Strengthened</option>
+                                    <option value="Tempered">Tempered</option>
+                                </select>
+                                <label>Window Size</label>
+                                <br>
+                                <select name="windowThickness" class="form-select form-select-lg mb-3">
+                                    <option selected></option>
+                                    <option value="Single Pane">Single Pane</option>
+                                    <option value="Dual Pane">Dual Pane</option>
+                                    <option value="Triple Pane">Triple Pane</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+
+                                <label>Removal</label>
+                                <select name="removal" class="form-select form-select-lg mb-3"
+                                    aria-label="Large select example">
+                                    <option selected></option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Quantity</label>
+                                <input name="quantity" type="number" class="form-control" placeholder="4">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mt-3">
+                                <button class="btn btn-success" type="submit">Add Item</button>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </form>
+        </section>
+
+
+
+        <div id="estimateSheetBtns">
+
+            <button class="btn btn-primary" style="float: right;"><a href="/confirmQuote">I'm Finished</a></button>
+
+
+        </div>
+
+
+
+        <section id="estimateTable">
+
+            <p>Total Sq. Ft. : <span>{{totalSqFt}}</span></p>
+
+            <p>Total Quantity : <span>{{totalQty}}</span></p>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Width</td>
+                        <td>Height</td>
+                        <td>Type</td>
+                        <td>Size</td>
+                        <td>Removal?</td>
+                        <td>Quantity</td>
+                    </tr>
+                </thead>
+                {{#each list}}
+                <tbody>
+                    <td>{{this.width}}</td>
+                    <td>{{this.height}}</td>
+                    <td>{{this.windowType}}</td>
+                    <td>{{this.windowThickness}}</td>
+                    <td>{{this.removal}}</td>
+                    <td>{{this.quantity}}</td>
+
+                <tbody>
+                    {{/each}}
+            </table>
+
+
+
+        </section>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

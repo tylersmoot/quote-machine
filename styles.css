@@ -1,0 +1,150 @@
+.box1,
+.box2 {
+    width: 100%;
+    height: 150px;
+    background: #d3d3d3;
+    border-radius: 10px;
+
+}
+
+.box3,
+.box4 {
+    width: 100%;
+    height: 150px;
+    background: #d3d3d3;
+    border-radius: 10px;
+
+}
+
+h4,
+h2 {
+    text-align: center;
+}
+
+#header h1 {
+    font-family: 'Modak';
+    color: ghostwhite;
+    letter-spacing: 2px;
+
+}
+
+#header {
+    height: 250px;
+    background: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#header p {
+    width: 75%;
+    text-align: center;
+    color: ghostwhite;
+    padding: 5px;
+}
+
+#header button {
+    position: relative;
+    top: 10px;
+}
+
+
+/* quote/estimate form */
+
+
+table {
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #d3d3d3;
+}
+
+table thead tr {
+    background-color: blue;
+    color: ghostwhite;
+
+}
+
+
+
+
+
+table tbody {
+    border: 1px solid #d3d3d3;
+}
+
+table tbody tr td {
+    padding: 3px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.header {
+    background: blue;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ghostwhite;
+}
+
+#estimateSheetBtns {
+    margin-top: 20px;
+}
+
+#estimateSheetBtns a {
+    text-decoration: none;
+    color: ghostwhite;
+
+}
+
+#estimateTable {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+
+
+/* build a quote page */
+
+
+
+
+#contactBtnsWrapper {
+    margin-top: 20px;
+}
+
+#contactBtnsWrapper a {
+    text-decoration: none;
+    color: ghostwhite;
+}
+
+#newContactForm {
+    background: #d3d3d3;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 gray;
+}
+
+
+#newContactForm label {
+    margin-top: 5px;
+}
+
+#quoteForm {
+    background-color: #d3d3d3d3;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 gray;
+}
+
+.dropdown button,
+ul {
+    width: 100%;
+}
+
+.crumbs {
+    display: flex;
+    justify-content: center;
+}
